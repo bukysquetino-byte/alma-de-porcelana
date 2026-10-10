@@ -1,5 +1,6 @@
 ---
 // El "cerebro" de la página
+const novedades = await Astro.glob('../novedades/*.md');
 ---
 
 <html lang="es">
@@ -187,11 +188,16 @@
         <h2>Novedades del Taller</h2>
         <div class="grilla-novedades">
           
-          <div class="tarjeta-novedad">
-            <span class="fecha-novedad">Próximamente</span>
-            <h3>Acá irán las novedades cargadas por Ana María</h3>
-            <p>Esta sección se conectará a un panel de control para que se pueda actualizar sin tocar código.</p>
-          </div>
+          {novedades.map((nota) => (
+  <div class="tarjeta-novedad">
+    {nota.frontmatter.image && <img src={nota.frontmatter.image} alt={nota.frontmatter.title} style="max-width: 100%; border-radius: 8px; margin-bottom: 10px;" />}
+    <span class="fecha-novedad">{nota.frontmatter.date}</span>
+    <h3>{nota.frontmatter.title}</h3>
+    <div style="text-align: left; margin-top: 10px;">
+      <nota.Content />
+    </div>
+  </div>
+))}
 
         </div>
       </div>
