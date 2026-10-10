@@ -217,7 +217,7 @@ const novedades = Object.values(import.meta.glob('../novedades/*.md', { eager: t
         <a href="https://facebook.com/almadeporcelana" target="_blank">📘 Alma de Porcelana</a>
       </div>
     </footer>
-<script>
+<script is:inline>
   if (window.netlifyIdentity) {
     window.netlifyIdentity.on("init", user => {
       if (!user) {
