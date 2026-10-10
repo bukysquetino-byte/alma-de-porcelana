@@ -1,6 +1,6 @@
 ---
 // El "cerebro" de la página
-const novedades = await Astro.glob('../novedades/*.md');
+const novedades = Object.values(import.meta.glob('../novedades/*.md', { eager: true }));
 ---
 
 <html lang="es">
@@ -188,7 +188,7 @@ const novedades = await Astro.glob('../novedades/*.md');
         <h2>Novedades del Taller</h2>
         <div class="grilla-novedades">
           
-          {novedades.map((nota) => (
+        {novedades.map((nota: any) => (
   <div class="tarjeta-novedad">
     {nota.frontmatter.image && <img src={nota.frontmatter.image} alt={nota.frontmatter.title} style="max-width: 100%; border-radius: 8px; margin-bottom: 10px;" />}
     <span class="fecha-novedad">{nota.frontmatter.date}</span>
