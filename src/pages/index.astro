@@ -1,0 +1,217 @@
+---
+// El "cerebro" de la página
+---
+
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Alma de Porcelana | Taller Creativo</title>
+    <style>
+      html { scroll-behavior: smooth; }
+      body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        margin: 0; padding: 0; color: #4a4a4a; background-color: #faf9f7;
+      }
+      
+      .banner-principal { width: 100%; max-height: 400px; object-fit: cover; display: block; }
+
+      /* Menú de Navegación */
+      .menu-navegacion {
+        display: flex; justify-content: center; gap: 1.5rem; padding: 1rem;
+        background-color: white; box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        position: sticky; top: 0; z-index: 100; flex-wrap: wrap;
+      }
+      .menu-navegacion a {
+        text-decoration: none; color: #78909c; font-weight: bold;
+        padding: 0.5rem 1rem; border-radius: 20px; transition: background-color 0.3s, color 0.3s;
+      }
+      .menu-navegacion a:hover { background-color: #ede7f6; color: #9575cd; }
+
+      /* Secciones generales */
+      .seccion { padding: 4rem 1rem; max-width: 1100px; margin: 0 auto; }
+      h1, h2, h3 { color: #b39ddb; }
+      h1 { font-size: 2.5rem; margin-bottom: 0.5rem; }
+      h2 { font-size: 2rem; margin-bottom: 2rem; text-align: center; }
+      h3 { font-size: 1.4rem; color: #78909c; margin-top: 0; }
+      p { font-size: 1.1rem; line-height: 1.6; }
+
+      /* Presentación */
+      .presentacion { display: flex; align-items: center; justify-content: center; gap: 4rem; flex-wrap: nowrap; }
+      .foto-ana {
+        width: 100%; max-width: 400px; height: auto; border-radius: 8px; 
+        border: 10px solid white; outline: 2px solid #b39ddb; 
+        box-shadow: 5px 5px 15px rgba(0,0,0,0.15); transform: rotate(-2deg); 
+      }
+      .presentacion-texto { flex: 1; text-align: left; }
+
+      /* Servicios */
+      .seccion-servicios {
+        width: 100%; padding: 4rem 0; background-image: url('/imagenes/fondo-mariposas.jpg');
+        background-size: cover; background-position: center; background-attachment: fixed; position: relative;
+      }
+      .capa-transparente {
+        position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(255, 255, 255, 0.75); z-index: 1;
+      }
+      .contenido-servicios { position: relative; z-index: 2; max-width: 1100px; margin: 0 auto; padding: 0 1rem; }
+      .grilla-servicios { display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem; margin-top: 2rem; }
+      .tarjeta {
+        flex: 1 1 300px; max-width: 340px; background: white; padding: 2.5rem 2rem;
+        border-radius: 15px; box-shadow: 0 8px 25px rgba(0,0,0,0.1); text-align: center;
+        border-top: 5px solid #b39ddb; display: flex; flex-direction: column; justify-content: space-between;
+      }
+      .boton-whatsapp {
+        display: inline-block; background-color: #9575cd; color: white; padding: 12px 24px;
+        text-decoration: none; border-radius: 25px; font-weight: bold; margin-top: 1.5rem;
+        transition: transform 0.2s, background-color 0.3s; align-self: center; 
+      }
+      .boton-whatsapp:hover { background-color: #7e57c2; transform: scale(1.05); }
+
+      /* NUEVO: Instagram */
+      .seccion-instagram { background-color: white; width: 100%; padding: 4rem 0; }
+      .grilla-instagram {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1rem;
+        margin-top: 2rem;
+      }
+      .post-instagram {
+        aspect-ratio: 1 / 1; /* Hace que sean cuadrados perfectos */
+        background-color: #ede7f6;
+        border-radius: 10px;
+        display: flex; align-items: center; justify-content: center;
+        font-size: 3rem; color: #b39ddb;
+        transition: transform 0.3s;
+      }
+      .post-instagram:hover { transform: scale(1.05); }
+
+      /* Novedades */
+      .seccion-novedades { background-color: #faf9f7; width: 100%; padding: 4rem 0; }
+      .grilla-novedades { display: flex; flex-direction: column; gap: 1.5rem; max-width: 800px; margin: 0 auto; }
+      .tarjeta-novedad {
+        background: white; padding: 2rem; border-radius: 10px;
+        border-left: 6px solid #b39ddb; box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+      }
+      .fecha-novedad {
+        color: #9575cd; font-weight: bold; font-size: 0.9rem; margin-bottom: 0.5rem;
+        display: block; text-transform: uppercase; letter-spacing: 1px;
+      }
+      .tarjeta-novedad h3 { margin-bottom: 0.5rem; color: #4a4a4a; }
+
+      /* Footer */
+      footer { background-color: #ede7f6; text-align: center; padding: 3rem 1rem; }
+      footer a { color: #78909c; text-decoration: none; font-weight: bold; }
+      footer a:hover { color: #b39ddb; }
+      .redes-sociales { margin-top: 1.5rem; font-size: 1.2rem; }
+
+      @media (max-width: 850px) {
+        .presentacion { flex-direction: column; text-align: center; gap: 2rem; }
+        .presentacion-texto { text-align: left; }
+      }
+    </style>
+  </head>
+  
+  <body>
+    
+    <img src="/imagenes/banner.jpg" alt="Taller Creativo en Zapala" class="banner-principal" />
+
+    <nav class="menu-navegacion">
+      <a href="#presentacion">Conocenos</a>
+      <a href="#servicios">Servicios</a>
+      <a href="#instagram">Últimos Trabajos</a>
+      <a href="#novedades">Novedades</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+
+    <section id="presentacion" class="seccion presentacion">
+      <img src="/imagenes/ana.jpeg" alt="Ana María García" class="foto-ana" />
+      <div class="presentacion-texto">
+        <h1>El alma de Alma de Porcelana</h1>
+        <h3>Ana María García</h3>
+        <p>Bienvenidas a mi espacio. Un taller cálido y respetuoso diseñado para explorar tu creatividad, aprender técnicas hermosas y abrazar el proceso de prueba y error en el corazón de Zapala.</p>
+        <p>Acá el arte es nuestro cable a tierra. ¡Te invito a mancharte las manos y crear juntas!</p>
+      </div>
+    </section>
+
+    <section id="servicios" class="seccion-servicios">
+      <div class="capa-transparente"></div>
+      <div class="contenido-servicios">
+        <h2>¿Qué ofrecemos en el taller?</h2>
+        <div class="grilla-servicios">
+          <div class="tarjeta">
+            <h3>Talleres de Pintura</h3>
+            <p>Presenciales y Online. Taller libre de pintura sobre porcelana, MDF, cuadros y yeso. Incluye explicación y aplicación de técnicas y herramientas, adaptado a modalidades presenciales o virtuales.</p>
+            <a href="https://wa.me/5492942404971?text=Hola!%20Quiero%20información%20sobre%20los%20talleres%20de%20pintura." class="boton-whatsapp" target="_blank">Consultar talleres</a>
+          </div>
+          <div class="tarjeta">
+            <h3>Tienda de Piezas</h3>
+            <p>Venta de piezas listas para pintar (porcelana, cerámica, yeso, madera). ¡Consultá nuestro catálogo! Contamos con posibilidad de realizar envíos.</p>
+            <a href="https://wa.me/5492942404971?text=Hola!%20Me%20interesa%20comprar%20piezas%20listas%20para%20pintar." class="boton-whatsapp" target="_blank">Ver piezas</a>
+          </div>
+          <div class="tarjeta">
+            <h3>Servicio de Horneado</h3>
+            <p>Servicio profesional de horneado de piezas de cerámica y porcelana, exclusivo para la comunidad local de nuestra ciudad.</p>
+            <a href="https://wa.me/5492942404971?text=Hola!%20Necesito%20información%20sobre%20el%20servicio%20de%20horneado." class="boton-whatsapp" target="_blank">Consultar horneado</a>
+          </div>
+          <div class="tarjeta">
+            <h3>Venta de Insumos</h3>
+            <p>Todo para el artista. Venta de materiales de excelente calidad: pinceles, óleos, acrílicos y todas las herramientas que necesitas para crear.</p>
+            <a href="https://wa.me/5492942404971?text=Hola!%20Quiero%20consultar%20por%20la%20venta%20de%20insumos%20y%20materiales." class="boton-whatsapp" target="_blank">Ver insumos</a>
+          </div>
+          <div class="tarjeta">
+            <h3>Trabajos por Encargo</h3>
+            <p>Creación de piezas pintadas personalizadas a medida. Diseño exclusivo para regalos empresariales, presentes individuales, souvenirs para eventos y pedidos especiales a todo el país.</p>
+            <a href="https://wa.me/5492942404971?text=Hola!%20Quisiera%20encargar%20un%20trabajo%20personalizado." class="boton-whatsapp" target="_blank">Encargar pieza</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- NUEVA SECCIÓN: Instagram -->
+    <section id="instagram" class="seccion-instagram">
+      <div class="seccion" style="padding-top: 0; padding-bottom: 0;">
+        <h2>Últimos trabajos en Instagram</h2>
+        <div class="grilla-instagram">
+          <!-- Estas cajas son de prueba. Luego se reemplazan por el widget real de Instagram -->
+          <div class="post-instagram">📷</div>
+          <div class="post-instagram">🎨</div>
+          <div class="post-instagram">🦋</div>
+          <div class="post-instagram">🖌️</div>
+        </div>
+        <div style="text-align: center; margin-top: 2rem;">
+          <a href="https://instagram.com/almadeporcelanazapala" target="_blank" class="boton-whatsapp" style="background-color: #E1306C;">Seguinos en Instagram</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="novedades" class="seccion-novedades">
+      <div class="seccion" style="padding-top: 0;">
+        <h2>Novedades del Taller</h2>
+        <div class="grilla-novedades">
+          
+          <div class="tarjeta-novedad">
+            <span class="fecha-novedad">Próximamente</span>
+            <h3>Acá irán las novedades cargadas por Ana María</h3>
+            <p>Esta sección se conectará a un panel de control para que se pueda actualizar sin tocar código.</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <footer id="contacto">
+      <h2>Contacto</h2>
+      <p>Consultas y pedidos por WhatsApp al <strong>2942-404971</strong></p>
+      <p>
+        ✉️ <a href="mailto:agarciamaria@yahoo.com.ar">agarciamaria@yahoo.com.ar</a> | 
+        <a href="mailto:Agarciamaria7@gmail.com">Agarciamaria7@gmail.com</a>
+      </p>
+      <div class="redes-sociales">
+        <p>¡Seguinos en nuestras redes!</p>
+        <a href="https://instagram.com/almadeporcelanazapala" target="_blank">📷 @almadeporcelanazapala</a> &nbsp; | &nbsp; 
+        <a href="https://facebook.com/almadeporcelana" target="_blank">📘 Alma de Porcelana</a>
+      </div>
+    </footer>
+
+  </body>
+</html>
