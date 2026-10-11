@@ -192,7 +192,7 @@ const novedades = Object.values(import.meta.glob('../novedades/*.md', { eager: t
         {novedades.map((nota: any) => (
   <div class="tarjeta-novedad">
     {nota.frontmatter.image && <img src={nota.frontmatter.image} alt={nota.frontmatter.title} style="max-width: 100%; border-radius: 8px; margin-bottom: 10px;" />}
-    <span class="fecha-novedad">{nota.frontmatter.date}</span>
+    <span class="fecha-novedad">{nota.frontmatter.date.toString().slice(0, 10).split('-').reverse().join('/')}</span>
     <h3>{nota.frontmatter.title}</h3>
     <div style="text-align: left; margin-top: 10px;">
       <nota.Content />
