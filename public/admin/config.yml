@@ -16,3 +16,15 @@ collections:
       - {label: "Fecha", name: "date", widget: "datetime", format: "YYYY-MM-DD"}
       - {label: "Imagen (Opcional)", name: "image", widget: "image", required: false}
       - {label: "Texto del anuncio", name: "body", widget: "markdown"}
+
+      - name: "catalogo"
+    label: "Catálogo"
+    folder: "src/catalogo"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - {label: "Nombre del producto", name: "title", widget: "string"}
+      - {label: "Foto", name: "image", widget: "image"}
+      - {label: "Categoría", name: "categoria", widget: "select", options: ["Insumo", "Pieza Terminada"]}
+      - {label: "Descripción corta", name: "descripcion", widget: "string"}
+      - {label: "Disponibilidad", name: "stock", widget: "select", options: ["Disponible", "Agotado", "Por encargo"]}
