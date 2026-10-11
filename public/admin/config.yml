@@ -17,7 +17,7 @@ collections:
       - {label: "Imagen (Opcional)", name: "image", widget: "image", required: false}
       - {label: "Texto del anuncio", name: "body", widget: "markdown"}
 
-      - name: "catalogo"
+     - name: "catalogo"
     label: "Catálogo"
     folder: "src/catalogo"
     create: true
